@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Linguística</title>
+    <style>
+        :root {
+            --primary-color: #00d15e;    /* Verde água */
+            --secondary-color: #20b281;  /* Verde água mais escuro */
+            --accent-color: #E0FFFF;     /* Verde água claro */
+            --background: #000000;       /* Preto */
+            --text-color: #FFFFFF;       /* Branco */
+            --border-color: #333333;     /* Cinza escuro */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            margin: 10px 0 0;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+        
+        .question-card {
+            background-color: #111111;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .question-number {
+            color: var(--primary-color);
+            margin-right: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .options-container {
+            margin-top: 15px;
+        }
+        
+        .option {
+            margin: 10px 0;
+            padding: 12px 15px;
+            background-color: #1A1A1A;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .option:hover {
+            border-left: 3px solid var(--primary-color);
+            background-color: #222222;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: var(--background);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .report-panel {
+            display: none;
+            background-color: #111111;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .report-title {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        
+        .score-display {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        .score-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .question-result {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .correct-answer {
+            color: #00CED1;
+            font-weight: 500;
+        }
+        
+        .incorrect-answer {
+            color: #FF6B6B;
+            font-weight: 500;
+        }
+        
+        .explanation {
+            font-style: italic;
+            color: #CCCCCC;
+            margin-top: 8px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Análise Linguística</h1>
+        <p>Identifique o sentido das expressões</p>
+    </div>
+
+    <div id="quiz-container">
+        <div class="question-card">
+            <div class="question-text">
+                <span class="question-number">1</span>
+                "Ela está com coração de pedra."<br>
+                O que essa frase expressa?
+            </div>
+            <div class="options-container">
+                <label class="option">
+                    <input type="radio" name="question1" value="Denotativo"> Denotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question1" value="Conotativo"> Conotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question1" value="Polissêmico"> Polissêmico
+                </label>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">
+                <span class="question-number">2</span>
+                "O banco estava lotado."<br>
+                Como se entende a palavra "banco" nessa frase?
+            </div>
+            <div class="options-container">
+                <label class="option">
+                    <input type="radio" name="question2" value="Denotativo"> Denotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question2" value="Conotativo"> Conotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question2" value="Polissêmico"> Polissêmico
+                </label>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">
+                <span class="question-number">3</span>
+                "O cachorro latiu a noite toda."<br>
+                Que tipo de linguagem é usada nessa frase?
+            </div>
+            <div class="options-container">
+                <label class="option">
+                    <input type="radio" name="question3" value="Denotativo"> Denotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question3" value="Conotativo"> Conotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question3" value="Polissêmico"> Polissêmico
+                </label>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">
+                <span class="question-number">4</span>
+                "Ele plantou a semente da discórdia."<br>
+                Como essa ideia foi expressa?
+            </div>
+            <div class="options-container">
+                <label class="option">
+                    <input type="radio" name="question4" value="Denotativo"> Denotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question4" value="Conotativo"> Conotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question4" value="Polissêmico"> Polissêmico
+                </label>
+            </div>
+        </div>
+
+        <div class="question-card">
+            <div class="question-text">
+                <span class="question-number">5</span>
+                "Ele vive de jogo."<br>
+                Como se classifica a palavra "jogo" nesse contexto?
+            </div>
+            <div class="options-container">
+                <label class="option">
+                    <input type="radio" name="question5" value="Denotativo"> Denotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question5" value="Conotativo"> Conotativo
+                </label>
+                <label class="option">
+                    <input type="radio" name="question5" value="Polissêmico"> Polissêmico
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <button class="submit-btn" id="submit-btn">Verificar Respostas</button>
+
+    <div class="report-panel" id="report-panel">
+        <h2 class="report-title">Relatório de Desempenho</h2>
+        <div class="score-display">
+            Sua pontuação: <span class="score-value" id="score-value">0</span>/5
+        </div>
+        <div id="question-results">
+            <!-- Resultados das questões serão inseridos aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Respostas corretas
+        const correctAnswers = {
+            question1: "Conotativo",
+            question2: "Polissêmico",
+            question3: "Denotativo",
+            question4: "Conotativo",
+            question5: "Polissêmico"  // Atualizado para a nova questão
+        };
+
+        // Explicações
+        const explanations = {
+            question1: "A expressão 'coração de pedra' sugere frieza emocional, não um coração literalmente feito de pedra.",
+            question2: "A palavra 'banco' pode se referir tanto à instituição financeira quanto ao móvel para sentar.",
+            question3: "A frase descreve um fato literal, sem sentido figurado ou múltiplas interpretações.",
+            question4: "'Plantar a semente da discórdia' é uma metáfora para causar desentendimentos.",
+            question5: "A palavra 'jogo' pode significar videogame, esporte ou aposta, dependendo do contexto."  // Nova explicação
+        };
+
+        // Processar respostas
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            let score = 0;
+            let resultsHTML = '';
+            
+            // Verificar cada questão
+            for (let i = 1; i <= 5; i++) {
+                const questionName = `question${i}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                const userAnswer = selectedOption ? selectedOption.value : 'Não respondida';
+                const isCorrect = userAnswer === correctAnswers[questionName];
+                
+                if (isCorrect) score++;
+                
+                resultsHTML += `
+                    <div class="question-result">
+                        <p><strong>Questão ${i}:</strong> ${document.querySelector(`.question-card:nth-child(${i}) .question-text`).textContent.trim()}</p>
+                        <p>Sua resposta: <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">${userAnswer}</span></p>
+                        <p>Resposta correta: ${correctAnswers[questionName]}</p>
+                        <p class="explanation">${explanations[questionName]}</p>
+                    </div>
+                `;
+            }
+            
+            // Atualizar o relatório
+            document.getElementById('score-value').textContent = score;
+            document.getElementById('question-results').innerHTML = resultsHTML;
+            document.getElementById('report-panel').style.display = 'block';
+            
+            // Rolagem suave para o relatório
+            document.getElementById('report-panel').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
